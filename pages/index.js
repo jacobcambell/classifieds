@@ -1,9 +1,10 @@
 import React from 'react'
+import Navbar from '../components/Navbar/Navbar'
 
 export default function Index() {
   return (
-    <div className="bg-green-500">
-      Classifieds
+    <div>
+      <Navbar></Navbar>
     </div>
   )
 }
