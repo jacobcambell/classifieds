@@ -4,6 +4,8 @@ import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../firebase-config'
 
 export default function Buttons() {
+    const [loggedIn, setLoggedIn] = useState<boolean>(false)
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
             setLoggedIn(true)
@@ -11,8 +13,6 @@ export default function Buttons() {
             setLoggedIn(false)
         }
     })
-
-    const [loggedIn, setLoggedIn] = useState<boolean>(false)
 
     if (loggedIn) {
         return (
