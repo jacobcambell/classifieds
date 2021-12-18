@@ -75,4 +75,18 @@ describe("CreateListingForm", () => {
 
     await findByText("Price should be no more than 99999");
   });
+
+  test("Price should not be empty", async () => {
+    const { findByTestId, findByText } = render(<CreateListingForm />);
+
+    const titleInput = await findByTestId("titleInput");
+    const priceInput = await findByTestId("priceInput");
+    const submitBtn = await findByTestId("submitBtn");
+
+    fireEvent.input(titleInput, { target: { value: "A great title" } });
+
+    fireEvent.click(submitBtn);
+
+    await findByText("Price should not be empty");
+  });
 });

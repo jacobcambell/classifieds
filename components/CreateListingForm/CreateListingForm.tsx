@@ -16,6 +16,10 @@ export default function CreateListingForm() {
       setError("Title should be no more than 50 characters long.");
       return;
     }
+    if (price.length === 0) {
+      setError("Price should not be empty");
+      return;
+    }
     if (isNaN(Number(price))) {
       setError("Price should be a number value");
       return;
