@@ -1,13 +1,5 @@
-import admin from "firebase-admin";
-import { applicationDefault } from "firebase-admin/app";
 import { pg } from "../../config/knex";
-
-if (admin.apps.length === 0) {
-  // App has not been initialized yet
-  admin.initializeApp({
-    credential: applicationDefault(),
-  });
-}
+import { admin } from "../../config/firebase-admin";
 
 export default async function handler(req, res) {
   const check = [req.headers.firebase_token, req.body.title, req.body.price];
