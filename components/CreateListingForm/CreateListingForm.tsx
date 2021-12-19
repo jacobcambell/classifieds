@@ -1,9 +1,28 @@
 import React, { useState } from "react";
+import { auth } from "../firebase-config";
+import { useMutation } from "react-query";
+import axios from "axios";
+
+type CreateListingOptions = {
+  title: string;
+  price: string;
+  firebase_token: string;
+};
 
 export default function CreateListingForm() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [error, setError] = useState<string | null>(null);
+
+  const { mutate } = useMutation((options: CreateListingOptions) => {
+    return axios.post(
+      "/api/create-listing",
+      { title: options.title, price: options.price },
+      {
+        headers: { firebase_token: options.firebase_token },
+      }
+    );
+  });
 
   const handleSubmit = () => {
     setError(null);
@@ -32,6 +51,11 @@ export default function CreateListingForm() {
       setError("Price should be no more than 99999");
       return;
     }
+
+    // Get Firebase auth token
+    auth.currentUser.getIdToken(true).then((firebase_token) => {
+      mutate({ title, price, firebase_token });
+    });
   };
 
   return (
