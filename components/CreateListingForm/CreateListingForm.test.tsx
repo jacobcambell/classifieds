@@ -3,11 +3,16 @@
  */
 
 import CreateListingForm from "./CreateListingForm";
+import QueryProvider from "../QueryProvider/QueryProvider";
 import { render, screen, fireEvent } from "@testing-library/react";
 
 describe("CreateListingForm", () => {
   test("Title should be at least 3 characters long", async () => {
-    const { findByTestId, findByText } = render(<CreateListingForm />);
+    const { findByTestId, findByText } = render(
+      <QueryProvider>
+        <CreateListingForm />
+      </QueryProvider>
+    );
 
     const titleInput = await findByTestId("titleInput");
     const submitBtn = await findByTestId("submitBtn");
@@ -20,7 +25,11 @@ describe("CreateListingForm", () => {
   });
 
   test("Title should be at most 50 characters long", async () => {
-    const { findByTestId, findByText } = render(<CreateListingForm />);
+    const { findByTestId, findByText } = render(
+      <QueryProvider>
+        <CreateListingForm />
+      </QueryProvider>
+    );
 
     const titleInput = await findByTestId("titleInput");
     const submitBtn = await findByTestId("submitBtn");
@@ -35,7 +44,11 @@ describe("CreateListingForm", () => {
   });
 
   test("Price should be a value than can change to a number", async () => {
-    const { findByTestId, findByText } = render(<CreateListingForm />);
+    const { findByTestId, findByText } = render(
+      <QueryProvider>
+        <CreateListingForm />
+      </QueryProvider>
+    );
 
     const titleInput = await findByTestId("titleInput");
     const priceInput = await findByTestId("priceInput");
@@ -52,7 +65,11 @@ describe("CreateListingForm", () => {
   });
 
   test("Price should be between 0 and 99999", async () => {
-    const { findByTestId, findByText } = render(<CreateListingForm />);
+    const { findByTestId, findByText } = render(
+      <QueryProvider>
+        <CreateListingForm />
+      </QueryProvider>
+    );
 
     const titleInput = await findByTestId("titleInput");
     const priceInput = await findByTestId("priceInput");
@@ -77,7 +94,11 @@ describe("CreateListingForm", () => {
   });
 
   test("Price should not be empty", async () => {
-    const { findByTestId, findByText } = render(<CreateListingForm />);
+    const { findByTestId, findByText } = render(
+      <QueryProvider>
+        <CreateListingForm />
+      </QueryProvider>
+    );
 
     const titleInput = await findByTestId("titleInput");
     const priceInput = await findByTestId("priceInput");
