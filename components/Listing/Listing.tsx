@@ -1,9 +1,15 @@
 import React from "react";
-import Image from "next/image";
+import styles from "./Listing.module.scss";
 
-export default function Listing({ title, price }) {
+export default function Listing({ image, title, price }) {
   return (
-    <div className="border border-gray-300 w-1/4 inline-block mx-3 my-3">
+    <div className={`border border-gray-300 mx-1 ${styles.listing}`}>
+      <div
+        className={`${styles.image}`}
+        style={{
+          backgroundImage: `url(${image})`,
+        }}
+      ></div>
       <p className="font-bold">{title}</p>
       <p className="text-primaryblue">${price}</p>
     </div>
