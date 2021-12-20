@@ -3,7 +3,7 @@ import styles from "./Listing.module.scss";
 
 export default function Listing({ image, title, price }) {
   return (
-    <div className={`border border-gray-300 mx-1 ${styles.listing}`}>
+    <div className={`border border-gray-300 mx-4 ${styles.listing}`}>
       <div
         className={`${styles.image}`}
         style={{
